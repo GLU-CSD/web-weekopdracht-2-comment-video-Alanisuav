@@ -51,14 +51,15 @@ class Reactions
         if($grqry === false) {
             prettyDump( mysqli_error($con) );
         } else{
-            $grqry->bind_result($id,$name,$email);
+            $grqry->bind_result($id,$name,$email,$message);
             if($grqry->execute()){
                 $grqry->store_result();
                 while($grqry->fetch()){
                     $array[] = [
                         'id' => $id,
                         'name' => $name,
-                        'email'=> $email
+                        'email'=> $email,
+                        'message' => $message
                     ];
                 }
             }
@@ -67,4 +68,3 @@ class Reactions
         return $array;
     }
 }
-
